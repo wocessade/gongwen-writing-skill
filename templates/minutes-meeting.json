@@ -1,0 +1,41 @@
+{
+    "template_id": "minutes-meeting",
+    "name": "会议纪要",
+    "description": "记载会议主要情况和议定事项",
+    "document_type": "纪要",
+    "source_refs": [
+        {
+            "type": "regulation",
+            "title": "《党政机关公文处理工作条例》",
+            "ref": "中办发〔2012〕14号",
+            "section": "第八条 纪要：适用于记载会议主要情况和议定事项"
+        },
+        {
+            "type": "common_practice",
+            "note": "党政机关会议纪要惯用结构：基本情况→会议内容→议定事项→工作要求"
+        }
+    ],
+    "defaults": {
+        "main_recipient": null
+    },
+    "body_sections": [
+        {"level": 0, "text": "一、会议基本情况"},
+        {"level": null, "text": "XX年X月X日【上午/下午】，【主持人姓名职务】在【地点】主持召开【会议名称】。【参会单位/人员列举】。现将会议情况纪要如下："},
+        {"level": 0, "text": "二、会议内容"},
+        {"level": 1, "text": "（一）关于【议题一】"},
+        {"level": null, "text": "会议听取了【汇报人】关于【事项】的汇报。会议认为，【观点】。"},
+        {"level": 1, "text": "（二）关于【议题二】"},
+        {"level": null, "text": "会议研究了【事项】。会议指出，【观点】。"},
+        {"level": 0, "text": "三、议定事项"},
+        {"level": null, "text": "会议议定以下事项："},
+        {"level": null, "text": "（一）【议定事项一】。"},
+        {"level": null, "text": "（二）【议定事项二】。"},
+        {"level": 0, "text": "四、工作要求"},
+        {"level": null, "text": "（一）【责任单位】牵头负责【具体任务】，于【时限】前完成。"},
+        {"level": null, "text": "（二）各相关单位要密切配合，确保各项工作落实到位。"}
+    ],
+    "hints": {
+        "title_template": "【会议名称】纪要",
+        "body_guide": "①纪要不需发文字号和主送机关；②注明时间、地点、主持人、参会人员；③议定事项是纪要核心，要逐条明确；④纪要用'会议认为''会议指出''会议强调''会议议定'等规范用语"
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "template_id": "notice-annual-report",
+    "name": "年度报告通知",
+    "description": "事业单位年度报告报送工作部署",
+    "document_type": "通知",
+    "source_refs": [
+        {
+            "type": "regulation",
+            "title": "《事业单位登记管理暂行条例》",
+            "ref": "国务院令第411号",
+            "section": "第十七条 事业单位应当于每年3月31日前向登记管理机关报送上一年度的年度报告"
+        },
+        {
+            "type": "common_practice",
+            "note": "各级编办/登记管理局发布的年度报告通知惯用结构"
+        }
+    ],
+    "defaults": {
+        "main_recipient": "市直各事业单位、各县（市、区）事业单位登记管理局："
+    },
+    "body_sections": [
+        {"level": 0, "text": "一、年报范围"},
+        {"level": null, "text": "凡在【登记管理机关】核准登记的事业单位法人，均应报送XX年度年度报告。"},
+        {"level": 0, "text": "二、年报内容"},
+        {"level": null, "text": "（一）《事业单位法人年度报告书》；"},
+        {"level": null, "text": "（二）《事业单位法人证书》副本复印件；"},
+        {"level": null, "text": "（三）上一年度资产负债表（需加盖财务公章）；"},
+        {"level": null, "text": "（四）有关资质认可或执业许可证明文件复印件。"},
+        {"level": 0, "text": "三、报送时间及方式"},
+        {"level": null, "text": "（一）报送时间：XX年X月X日至X月X日。"},
+        {"level": null, "text": "（二）报送方式：通过【系统名称】在线填报并提交。"},
+        {"level": 0, "text": "四、工作要求"},
+        {"level": null, "text": "（一）各单位要高度重视，确保报告内容真实、完整、准确。"},
+        {"level": null, "text": "（二）逾期未报或报告内容不实的，将按照有关规定处理。"}
+    ],
+    "hints": {
+        "title_template": "关于开展XX年度事业单位法人年度报告工作的通知",
+        "body_guide": "①年度报告通知的核心是列出需要提交的具体材料清单；②时间节点要明确；③后果条款（逾期处理）是必备要素"
+    }
+}

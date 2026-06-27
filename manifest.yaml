@@ -1,0 +1,200 @@
+# 公文写作 — declarative loading manifest (SELF-CONTAINED)
+# Standalone GongWen (Chinese official document) writing module.
+# Reuses shared infrastructure from academic-shared via relative path.
+# All external skill dependencies are embedded under skills-embedded/.
+
+name: gongwen-writing
+version: "1.0"
+description: 党政机关公文写作（GB/T 9704-2012 标准）
+
+# ── Session Variables ──────────────────────────────
+session_variables:
+  output_dir:
+    description: "Directory path for writing intermediate and final output files. Set before any stage executes. Resolves to {output_dir_base}/{doc_slug}/ after directory resolution. Default base: ./paper_output_gongwen"
+    default: "./paper_output_gongwen"
+  doc_slug:
+    description: "Per-document unique identifier in format {YYYYMMDD_HHMMSS}_{english_slug}. Generated at pipeline start from current timestamp + doc subject."
+    default: null
+  doc_dir:
+    description: "Full per-doc output path = {output_dir_base}/{doc_slug}/. This is what {output_dir} resolves to after directory resolution."
+    default: null
+  pipeline_root:
+    description: "Root directory of the gongwen-writing skill. Auto-detected at session start as the directory containing manifest.yaml."
+    default: "."
+  trigger_intent:
+    description: "Detected trigger keywords from user message for conditional stages (e.g., G3.5). Set by G3 before evaluating routing. Null if no trigger detected."
+    default: null
+
+# ── Axes ───────────────────────────────────────────
+axes:
+  entry_point:
+    description: "How does the document start?"
+    values: [new-document, existing-manuscript]
+    detect:
+      new-document: "User mentions a document type (通知, 报告, 请示, 批复, 函, 纪要, etc.) or requests to draft a Chinese government official document"
+      existing-manuscript: "User has a complete .docx draft and wants format compliance check"
+
+  documentType:
+    description: "Type of the official document (公文文种)"
+    values: [通知, 报告, 请示, 批复, 函, 纪要, 通报, 通告, 公告, 决定, 决议, 命令, 公报, 意见, 议案]
+    default: null
+    detect:
+      上行文: "User mentions 报告, 请示 — documents submitted to higher authorities"
+      下行文: "User mentions 通知, 批复, 通报, 决定, 决议, 命令, 意见, 通告, 公告, 公报 — documents issued to lower authorities"
+      平行文: "User mentions 函 — documents between equal-level organs"
+
+  urgency:
+    description: "Urgency level of the document"
+    values: [normal, 特急, 加急]
+    default: normal
+
+  securityLevel:
+    description: "Security classification"
+    values: [none, 秘密, 机密, 绝密]
+    default: none
+
+  mode:
+    description: "Execution mode"
+    values: [auto, semi-auto]
+    default: auto
+
+  stage:
+    description: "Current active pipeline stage"
+    values: [G0, G1, G2, G3, G3.5, G4]
+
+  language:
+    description: "Working language — only Chinese for official documents"
+    values: [zh]
+    default: zh
+
+# ── Embedded References ────────────────────────────
+embedded_references:
+  important:
+    - file: skills-embedded/docx.md
+      stages: [G2]
+      purpose: python-docx reference (.docx generation)
+
+# ── Always Load ─────────────────────────────────────
+always_load:
+  - static/core/convergence-loop.md
+  - static/core/incremental-update.md
+  - static/core/attention-defense.md
+  - static/core/pipeline-rules.md
+  - static/core/gate-chain.md
+  - static/core/dispatch-points.md
+  - static/core/context-budget.md
+  - static/core/parallel-groups.md
+  - static/core/result-collection.md
+  - static/core/stop-and-ask.md
+  - static/core/fallback.md
+  - static/core/input-validation.md
+  - static/core/exit-protocol.md
+  - static/core/web-search-policy.md
+  - static/core/paper-types.md
+  - static/core/prerequisites.md
+  - static/core/do-dont.md
+  - static/core/session-persistence.md
+  - static/core/stage-output-format.md
+  - static/core/session-variables.md
+  - static/core/multi-agent-patterns.md
+  - static/core/material-passport.md
+
+# ── On Demand: Strategists ──────────────────────────
+strategists:
+  G0:
+    file: strategists/G0-strategist.md
+    entry_point: new-document
+    next: G1
+  G1:
+    file: strategists/G1-strategist.md
+    next: G2
+  G2:
+    file: strategists/G2-strategist.md
+    next: G3
+  G3:
+    file: strategists/G3-strategist.md
+    next: G4
+    entry_point: existing-manuscript
+  G4:
+    file: strategists/G4-strategist.md
+    next: null  # terminal — document finalized
+  G3.5:
+    file: strategists/G3.5-strategist.md
+    next: G4
+    condition: keyword_triggered
+
+# ── On Demand: Composers ──────────────────────────
+composers:
+  - path: composers/gongwen-docx-assembly.md
+
+# ── Dependency Graph ──────────────────────────────
+dependency_graph:
+  new-document: ['G0', 'G1', 'G2', 'G3', 'G3.5?', 'G4']
+  existing-manuscript: ['G3', 'G3.5?', 'G4']
+
+# ── On Demand: References ───────────────────────────
+references:
+  gb-t9704-quick-ref:
+    file: references/gb-t9704-2012-quick-ref.md
+    condition:
+      stage: [G2, G3]
+    on_demand: true
+
+  document-type-templates:
+    file: references/document-type-templates.md
+    condition:
+      stage: [G0, G1]
+    on_demand: true
+
+  formal-language-guide:
+    file: references/formal-language-guide.md
+    condition:
+      stage: [G2, G3, G4]
+    on_demand: true
+
+  stamp-format-guide:
+    file: references/stamp-format-guide.md
+    condition:
+      stage: [G2, G3]
+
+  evaluate-module:
+    file: evaluate/config/gongwen_evaluate.yaml
+    condition:
+      stage: [G3, G4]
+    on_demand: true
+
+  gongwen-format-check:
+    file: evaluate/scripts/gongwen_format_check.py
+    condition:
+      stage: [G3]
+    on_demand: true
+
+  generate-gongwen-script:
+    file: scripts/generate_gongwen_docx.py
+    condition:
+      stage: [G2]
+    on_demand: true
+
+  convert-gongwen-script:
+    file: scripts/convert_gongwen.py
+    condition:
+      stage: [G3]
+    on_demand: true
+
+  create-processing-slip-script:
+    file: scripts/create_processing_slip.py
+    condition:
+      stage: [G4]
+    on_demand: true
+
+  banji-guide:
+    file: references/banji-guide.md
+    condition:
+      stage: [G3]
+    on_demand: true
+
+  content-compliance-agent:
+    file: evaluate/agents/content_compliance.md
+    condition:
+      stage: [G3.5]
+    on_demand: true

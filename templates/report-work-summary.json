@@ -1,0 +1,42 @@
+{
+    "template_id": "report-work-summary",
+    "name": "工作报告",
+    "description": "向上级机关汇报工作进展、存在问题及下一步打算",
+    "document_type": "报告",
+    "source_refs": [
+        {
+            "type": "regulation",
+            "title": "《党政机关公文处理工作条例》",
+            "ref": "中办发〔2012〕14号",
+            "section": "第八条 报告：适用于向上级机关汇报工作、反映情况，回复上级机关的询问"
+        },
+        {
+            "type": "common_practice",
+            "note": "'进展—问题—打算'三段式结构为各级机关工作报告惯用范式"
+        }
+    ],
+    "defaults": {
+        "signatory_required": true
+    },
+    "body_sections": [
+        {"level": 0, "text": "一、工作进展情况"},
+        {"level": null, "text": "XX年以来，在【上级机关】的坚强领导下，【本单位】认真贯彻落实【政策/文件名称】，紧紧围绕【年度工作目标】，扎实推进各项工作，取得了阶段性成效。"},
+        {"level": 1, "text": "（一）【重点工作一】"},
+        {"level": null, "text": "【具体做法和成效，含数据支撑】"},
+        {"level": 1, "text": "（二）【重点工作二】"},
+        {"level": null, "text": "【具体做法和成效，含数据支撑】"},
+        {"level": 0, "text": "二、存在的主要问题"},
+        {"level": null, "text": "在看到成绩的同时，我们也清醒认识到，工作中还存在一些不足和问题："},
+        {"level": 1, "text": "（一）【问题一】"},
+        {"level": 1, "text": "（二）【问题二】"},
+        {"level": 0, "text": "三、下一步工作打算"},
+        {"level": null, "text": "下一步，我们将重点做好以下工作："},
+        {"level": 1, "text": "（一）【计划一】"},
+        {"level": 1, "text": "（二）【计划二】"},
+        {"level": null, "text": "特此报告。"}
+    ],
+    "hints": {
+        "title_template": "关于【时间段】【工作领域】工作情况的报告",
+        "body_guide": "①报告是上行文，必须标注签发人；②正文用'XX年以来''在XX的领导下'等规范句式开头；③问题部分要实事求是但不过分贬低；④结尾用'特此报告'；⑤不可夹带请示事项"
+    }
+}

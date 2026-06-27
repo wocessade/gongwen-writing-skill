@@ -1,0 +1,33 @@
+{
+    "template_id": "notice-appointment",
+    "name": "任免通知",
+    "description": "机关事业单位人事任免事项通知",
+    "document_type": "通知",
+    "source_refs": [
+        {
+            "type": "regulation",
+            "title": "《党政机关公文处理工作条例》",
+            "ref": "中办发〔2012〕14号",
+            "section": "第八条 通知：适用于发布、传达要求下级机关执行和有关单位周知或者执行的事项，批转、转发公文"
+        },
+        {
+            "type": "common_practice",
+            "note": "人事任免类通知惯用结构：先宣布任职再宣布免职，或分'任职''免职'两节"
+        }
+    ],
+    "defaults": {
+        "main_recipient": "各科室、所属各单位："
+    },
+    "body_sections": [
+        {"level": 0, "text": "一、任职"},
+        {"level": null, "text": "经【XX会议名称】研究决定："},
+        {"level": null, "text": "【姓名】任【职务】，免去其【原职务】；"},
+        {"level": null, "text": "【姓名】任【职务】（试用期一年）。"},
+        {"level": 0, "text": "二、免职"},
+        {"level": null, "text": "免去【姓名】的【职务】。"}
+    ],
+    "hints": {
+        "title_template": "关于【姓名】等同志职务任免的通知",
+        "body_guide": "①注明任免依据（经XX会议/党组研究决定）；②每人单独一行写明姓名+职务；③试用期需注明；④多人任免时按级别排序"
+    }
+}

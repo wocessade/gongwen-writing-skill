@@ -1,0 +1,33 @@
+# 公文评估配置
+dimensions:
+  - id: format_compliance
+    weight: 0.35
+    max_score: 100
+    critical_items: [页边距, 字体, 红头, 分隔线, 行距, 缩进, 页码]
+    scoring: median_of_3
+
+  - id: language_formality
+    weight: 0.35
+    max_score: 100
+    critical_items: [政治敏感用语, 正式语气, 口语化, 术语准确性]
+    scoring: median_of_3
+
+  - id: structure_completeness
+    weight: 0.30
+    max_score: 100
+    critical_items: [必备元素缺失, 文种匹配, 发文字号格式]
+    scoring: median_of_3
+
+  - id: attachment_seal
+    weight: 0
+    scoreless: true
+    gate: pass_fail
+
+  - id: content_compliance
+    weight: 0
+    scoreless: true
+    gate: pass_fail
+    condition: keyword_triggered
+
+pass_threshold: 70
+max_review_rounds: 3

@@ -1,0 +1,42 @@
+{
+    "template_id": "notice-title-review",
+    "name": "职称评审通知",
+    "description": "事业单位专业技术人员职称评审工作部署",
+    "document_type": "通知",
+    "source_refs": [
+        {
+            "type": "regulation",
+            "title": "《职称评审管理暂行规定》",
+            "ref": "人社部令第40号"
+        },
+        {
+            "type": "common_practice",
+            "note": "各地人社/教育/卫健部门发布的年度职称评审通知惯用结构"
+        }
+    ],
+    "defaults": {
+        "main_recipient": "各市、州人力资源和社会保障局，省直有关单位："
+    },
+    "body_sections": [
+        {"level": 0, "text": "一、评审范围"},
+        {"level": null, "text": "全省各类企事业单位中从事【专业领域】工作的在职专业技术人员。"},
+        {"level": 0, "text": "二、申报条件"},
+        {"level": null, "text": "（一）基本条件：遵守国家法律法规，具有良好的职业道德和敬业精神。"},
+        {"level": null, "text": "（二）学历资历条件：【具体条件】"},
+        {"level": null, "text": "（三）业绩成果条件：【具体条件】"},
+        {"level": 0, "text": "三、申报程序"},
+        {"level": null, "text": "（一）个人申报。申报人对照评审条件进行自评，准备申报材料。"},
+        {"level": null, "text": "（二）单位审核推荐。所在单位对申报材料进行审核，出具推荐意见。"},
+        {"level": null, "text": "（三）主管部门审核。【具体流程】"},
+        {"level": 0, "text": "四、材料报送要求"},
+        {"level": null, "text": "（一）《专业技术职务任职资格评审表》一式X份。"},
+        {"level": null, "text": "（二）学历证书、职称证书复印件。"},
+        {"level": null, "text": "（三）业绩证明材料。"},
+        {"level": 0, "text": "五、时间安排"},
+        {"level": null, "text": "材料报送截止时间：XX年X月X日。"}
+    ],
+    "hints": {
+        "title_template": "关于做好XX年度【专业】系列职称评审工作的通知",
+        "body_guide": "①职称评审通知必须列明评审范围、申报条件、程序、材料清单四要素；②条件要逐条写明，不可笼统；③注意区分正高/副高/中级的不同条件"
+    }
+}
